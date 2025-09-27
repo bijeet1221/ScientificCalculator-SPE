@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+	IMAGE_NAME = 'bijeet1221/scientific-calculator'
+    }
+
     stages {
         stage('Clone Git') {
             steps {
@@ -27,6 +31,17 @@ pipeline {
             steps {
                 echo "Building Docker Image..."
                 sh "docker build -t scientific-calculator:latest ."
+            }
+        }
+
+	stage('Push Docker Image to Registry') {
+            steps {
+                echo 'Pushing Docker image to DockerHub...'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials') {
+                        docker.image("${IMAGE_NAME}:latest").push()
+                    }
+                }
             }
         }
     }
