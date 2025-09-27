@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment{
-	IMAGE_NAME = 'bijeet1221/scientific-calculator'
+	    IMAGE_NAME = 'bijeet1221/scientific-calculator'
     }
 
     stages {
