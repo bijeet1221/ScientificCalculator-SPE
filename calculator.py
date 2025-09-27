@@ -1,25 +1,30 @@
 import math
 
+# Function to compute square root
 def square_root(x: float) -> float:
     if x < 0:
         raise ValueError("Cannot compute square root of negative number")
     return math.sqrt(x)
 
+# Function to compute factorial
 def factorial(x: int) -> int:
     if x < 0:
         raise ValueError("Cannot compute factorial of negative number")
     return math.factorial(x)
 
+# Function to compute natural logarithm
 def natural_log(x: float) -> float:
     if x <= 0:
         raise ValueError("Logarithm undefined for zero or negative numbers")
     return math.log(x)
 
+# Function to compute power (x^b)
 def power(x: float, b: float) -> float:
     return math.pow(x, b)
 
 
 if __name__ == "__main__":
+    # Main loop for calculator menu
     while True:
         print("\n=== Scientific Calculator ===")
         print("1. Square Root (√x)")
@@ -55,5 +60,6 @@ if __name__ == "__main__":
             else:
                 print("Invalid choice! Please enter 1-5.")
 
+        # Handle invalid inputs gracefully
         except ValueError as e:
             print(f"Error: {e}")
