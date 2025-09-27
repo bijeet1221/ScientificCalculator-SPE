@@ -30,7 +30,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-                sh "docker build -t scientific-calculator:latest ."
+                sh "docker build -t ${IMAGE_NAME}:latest ."
             }
         }
 
