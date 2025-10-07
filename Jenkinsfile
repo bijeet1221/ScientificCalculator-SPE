@@ -49,7 +49,7 @@ pipeline {
     stage('Deploying Our Application'){
             steps{
                 echo 'Deploying via Ansible...'
-                sh "${VENV_PATH}/bin/ansible-playbook -i inventory.ini playbook.yml"
+                sh "\"${VENV_PATH}/bin/ansible-playbook -i inventory.ini playbook.yml"
             }
         }
     }
