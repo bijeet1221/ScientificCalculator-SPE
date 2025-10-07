@@ -26,7 +26,7 @@ def power(x: float, b: float) -> float:
 if __name__ == "__main__":
     # Main loop for calculator menu
     while True:
-        print("\n=== Scientific Calculator ===")
+        print("\n=== Scientific Calculator ===", flush=True)
         print("1. Square Root (√x)")
         print("2. Factorial (x!)")
         print("3. Natural Logarithm (ln(x))")
