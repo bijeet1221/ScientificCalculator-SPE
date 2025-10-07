@@ -3,6 +3,7 @@ pipeline {
 
     environment{
 	    IMAGE_NAME = 'bijeet1221/scientific-calculator'
+        VENV_PATH = '/home/bijeet/Desktop/course/sem 7/SPE/workspace/ScientificCalculator/ansible-venv'
     }
 
     stages {
@@ -47,8 +48,8 @@ pipeline {
 
     stage('Deploying Our Application'){
             steps{
-                echo 'Deploying...'
-                sh "ansible-playbook -i inventory.ini playbook.yml"
+                echo 'Deploying via Ansible...'
+                sh "${VENV_PATH}/bin/ansible-playbook -i inventory.ini playbook.yml"
             }
         }
     }
