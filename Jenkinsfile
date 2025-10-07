@@ -44,12 +44,12 @@ pipeline {
                 }
             }
         }
-    }
 
     stage('Deploying Our Application'){
-        steps{
-            echo 'Deploying...'
-            sh "ansible-playbook -i inventory.ini playbook.yml"
+            steps{
+                echo 'Deploying...'
+                sh "ansible-playbook -i inventory.ini playbook.yml"
+            }
         }
     }
 }
