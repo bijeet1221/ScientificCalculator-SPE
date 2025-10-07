@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-    environment{
-	    IMAGE_NAME = 'bijeet1221/scientific-calculator'
+    environment {
+        IMAGE_NAME = 'bijeet1221/scientific-calculator'
         VENV_PATH = '/home/bijeet/Desktop/course/sem 7/SPE/workspace/ScientificCalculator/ansible-venv'
     }
 
@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-	stage('Push Docker Image to Registry') {
+        stage('Push Docker Image to Registry') {
             steps {
                 echo 'Pushing Docker image to DockerHub...'
                 script {
@@ -46,12 +46,11 @@ pipeline {
             }
         }
 
-    stage('Deploying Our Application'){
-            steps{
+        stage('Deploying Our Application') {
+            steps {
                 echo 'Deploying via Ansible...'
-                sh "\"${VENV_PATH}/bin/ansible-playbook -i inventory.ini playbook.yml"
+                sh "\"${VENV_PATH}/bin/ansible-playbook\" -i inventory.ini playbook.yml"
             }
         }
     }
 }
-
