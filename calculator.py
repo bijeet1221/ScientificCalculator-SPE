@@ -28,7 +28,7 @@ if __name__ == "__main__":
     while True:
         print("\n=== Scientific Calculator ===")
         print("1. Square Root (√x)")
-        print("2. Factorial (!x)")
+        print("2. Factorial (x!)")
         print("3. Natural Logarithm (ln(x))")
         print("4. Power (x^b)")
         print("5. Exit")
