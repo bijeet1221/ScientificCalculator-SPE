@@ -48,7 +48,7 @@ pipeline {
     stage('Deploying Our Application'){
             steps{
                 echo 'Deploying...'
-                sh "/home/bijeet/.local/bin/ansible-playbook -i inventory.ini playbook.yml"
+                sh "ansible-playbook -i inventory.ini playbook.yml"
             }
         }
     }
