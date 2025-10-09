@@ -56,37 +56,37 @@ pipeline {
                 """
             }
         }
+    }
+    post {
+        always {
+            // Send plain text email notification with build status
+            script {
+                def jobName = env.JOB_NAME
+                def buildNumber = env.BUILD_NUMBER
+                def pipelineStatus = currentBuild.result ?: 'UNKNOWN'
+                def buildUrl = env.BUILD_URL
 
-        post {
-            always {
-                // Send plain text email notification with build status
-                script {
-                    def jobName = env.JOB_NAME
-                    def buildNumber = env.BUILD_NUMBER
-                    def pipelineStatus = currentBuild.result ?: 'UNKNOWN'
-                    def buildUrl = env.BUILD_URL
+                def body = """
+                Jenkins Build Notification
 
-                    def body = """
-                    Jenkins Build Notification
+                Job Name: ${jobName}
+                Build Number: ${buildNumber}
+                Status: ${pipelineStatus.toUpperCase()}
 
-                    Job Name: ${jobName}
-                    Build Number: ${buildNumber}
-                    Status: ${pipelineStatus.toUpperCase()}
+                You can check the console output at:
+                ${buildUrl}console
+                """
 
-                    You can check the console output at:
-                    ${buildUrl}console
-                    """
-
-                    emailext(
-                        subject: "${jobName} - Build #${buildNumber} - ${pipelineStatus.toUpperCase()}",
-                        body: body,
-                        to: "bijeet.basak2018@gmail.com",
-                        from: "bijeet.basak2018@gmail.com",
-                        replyTo: "bijeet.basak2018@gmail.com",
-                        mimeType: 'text/plain'
-                    )
-                }
+                emailext(
+                    subject: "${jobName} - Build #${buildNumber} - ${pipelineStatus.toUpperCase()}",
+                    body: body,
+                    to: "bijeet.basak2018@gmail.com",
+                    from: "bijeet.basak2018@gmail.com",
+                    replyTo: "bijeet.basak2018@gmail.com",
+                    mimeType: 'text/plain'
+                )
             }
         }
     }
 }
+
