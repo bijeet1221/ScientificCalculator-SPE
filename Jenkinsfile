@@ -59,7 +59,6 @@ pipeline {
     }
     post {
         always {
-            // Send plain text email notification with build status
             script {
                 def jobName = env.JOB_NAME
                 def buildNumber = env.BUILD_NUMBER
@@ -73,17 +72,15 @@ pipeline {
                 Build Number: ${buildNumber}
                 Status: ${pipelineStatus.toUpperCase()}
 
-                You can check the console output at:
+                Check the console output at:
                 ${buildUrl}console
                 """
 
-                emailext(
+                // Send email using the built-in mail step
+                mail(
+                    to: 'bijeet.basak2018@gmail.com',
                     subject: "${jobName} - Build #${buildNumber} - ${pipelineStatus.toUpperCase()}",
-                    body: body,
-                    to: "bijeet.basak2018@gmail.com",
-                    from: "bijeet.basak2018@gmail.com",
-                    replyTo: "bijeet.basak2018@gmail.com",
-                    mimeType: 'text/plain'
+                    body: body
                 )
             }
         }
