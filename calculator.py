@@ -1,4 +1,7 @@
 import math
+import sys
+
+sys.stdout.reconfigure(line_buffering=True)
 
 # Function to compute square root
 def square_root(x: float) -> float:
